@@ -33,16 +33,22 @@ public abstract class BaseSystemUtilTask
 	public BaseSystemUtilTask(String name, int typeID)
 	{
 		super();
+		
+		if (name != null) {
+			this.name = name;
+		}
+		
+		this.typeID = typeID;
 	}
-	
 	
 	// public methods
 	
 	public String getName()
 	{
-		return null;
+	    return this.name;
 	}
-	
+
+
 	/**
 	 * Returns the type ID of the system utilization task.
 	 * 
@@ -50,15 +56,13 @@ public abstract class BaseSystemUtilTask
 	 */
 	public int getTypeID()
 	{
-		return 0;
+	    return this.typeID;
 	}
-	
 	/**
 	 * Template method definition. Sub-class will implement this to retrieve
 	 * the system utilization measure.
 	 * 
 	 * @return float
 	 */
-	public abstract float getTelemetryValue();
-	
+	public abstract float getTelemetryValue();	
 }
