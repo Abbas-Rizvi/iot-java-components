@@ -48,6 +48,8 @@ public class SystemMemUtilTask extends BaseSystemUtilTask
 		
 		double memUtil = (memUsed / memMax) * 100.0d;
 		
+		
+		
 		return (float) memUtil;
 	}
 	

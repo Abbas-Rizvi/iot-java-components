@@ -28,7 +28,9 @@ public class SystemStateData extends BaseIotData implements Serializable
 	
 	
 	// private var's
-	
+	private int command = ConfigConst.DEFAULT_COMMAND;
+	private List<SystemPerformanceData> sysPerfDataList = null;
+	private List<SensorData> sensorDataList = null;
     
     
 	// constructors
