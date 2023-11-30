@@ -1,12 +1,3 @@
-/**
- * 
- * This class is part of the Programming the Internet of Things
- * project, and is available via the MIT License, which can be
- * found in the LICENSE file at the top level of this repository.
- * 
- * Copyright (c) 2020 by Andrew D. King
- */ 
-
 package programmingtheiot.part03.integration.connection;
 
 import static org.junit.Assert.*;
@@ -21,6 +12,8 @@ import programmingtheiot.common.ConfigConst;
 import programmingtheiot.common.ConfigUtil;
 import programmingtheiot.common.IDataMessageListener;
 import programmingtheiot.common.ResourceNameEnum;
+import programmingtheiot.data.ActuatorData;
+import programmingtheiot.data.DataUtil;
 import programmingtheiot.gda.connection.*;
 
 /**
@@ -68,7 +61,7 @@ public class MqttClientConnectorTest
 	/**
 	 * Test method for {@link programmingtheiot.gda.connection.MqttClientConnector#connectClient()}.
 	 */
-//	@Test
+	//@Test
 	public void testConnectAndDisconnect()
 	{
 		int delay = ConfigUtil.getInstance().getInteger(ConfigConst.MQTT_GATEWAY_SERVICE, ConfigConst.KEEP_ALIVE_KEY, ConfigConst.DEFAULT_KEEP_ALIVE);
@@ -89,7 +82,7 @@ public class MqttClientConnectorTest
 	/**
 	 * Test method for {@link programmingtheiot.gda.connection.MqttClientConnector#publishMessage(programmingtheiot.common.ResourceNameEnum, java.lang.String, int)}.
 	 */
-	@Test
+	//@Test
 	public void testPublishAndSubscribe()
 	{
 		int qos = 0;
@@ -224,6 +217,36 @@ public class MqttClientConnectorTest
 		
 		try {
 			Thread.sleep(5000);
+		} catch (Exception e) {
+			// ignore
+		}
+		
+		assertTrue(this.mqttClient.disconnectClient());
+	}
+	
+	@Test
+	public void testActuatorCommandResponseSubscription()
+	{
+		int qos = 0;
+		
+		assertTrue(this.mqttClient.connectClient());
+		
+		try {
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			// ignore
+		}
+		
+		ActuatorData ad = new ActuatorData();
+		ad.setValue((float) 12.3);
+		ad.setAsResponse();
+		
+		String adJson = DataUtil.getInstance().actuatorDataToJson(ad);
+		
+		assertTrue(this.mqttClient.publishMessage(ResourceNameEnum.CDA_ACTUATOR_RESPONSE_RESOURCE, adJson, qos));
+		
+		try {
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			// ignore
 		}

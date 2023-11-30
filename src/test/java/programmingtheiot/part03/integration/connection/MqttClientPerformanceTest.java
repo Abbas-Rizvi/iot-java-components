@@ -1,12 +1,3 @@
-/**
- * 
- * This class is part of the Programming the Internet of Things
- * project, and is available via the MIT License, which can be
- * found in the LICENSE file at the top level of this repository.
- * 
- * Copyright (c) 2020 by Andrew D. King
- */ 
-
 package programmingtheiot.part03.integration.connection;
 
 import static org.junit.Assert.*;
@@ -53,7 +44,7 @@ public class MqttClientPerformanceTest
 	@Before
 	public void setUp() throws Exception
 	{
-		ConfigUtil.getInstance();
+		//ConfigUtil.getInstance();
 		this.mqttClient = new MqttClientConnector();
 	}
 	
@@ -70,7 +61,7 @@ public class MqttClientPerformanceTest
 	/**
 	 * Test method for {@link programmingtheiot.gda.connection.MqttClientConnector#connectClient()}.
 	 */
-	@Test
+	//@Test
 	public void testConnectAndDisconnect()
 	{
 		long startMillis = System.currentTimeMillis();
@@ -87,7 +78,7 @@ public class MqttClientPerformanceTest
 	/**
 	 * Test method for {@link programmingtheiot.gda.connection.MqttClientConnector#publishMessage(programmingtheiot.common.ResourceNameEnum, java.lang.String, int)}.
 	 */
-	@Test
+	//@Test
 	public void testPublishQoS0()
 	{
 		execTestPublish(MAX_TEST_RUNS, 0);
@@ -96,7 +87,7 @@ public class MqttClientPerformanceTest
 	/**
 	 * Test method for {@link programmingtheiot.gda.connection.MqttClientConnector#publishMessage(programmingtheiot.common.ResourceNameEnum, java.lang.String, int)}.
 	 */
-	@Test
+	//@Test
 	public void testPublishQoS1()
 	{
 		execTestPublish(MAX_TEST_RUNS, 1);

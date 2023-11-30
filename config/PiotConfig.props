@@ -53,12 +53,14 @@ enableCrypt    = False
 #
 [Coap.GatewayService]
 credFile       = ./cred/PiotCoapCred.props
-certFile       = ./cert/PiotCoapLocalCertFile.pem
+certFile       = ./cert/server.crt
 host           = localhost
-port           = 5683
-securePort     = 5684
+port           = 1883
+securePort     = 8883
+defaultQoS     = 0
+keepAlive      = 60
 enableAuth     = False
-enableCrypt    = False
+enableCrypt    = True
 enableConfirmedMsgs = True
 
 #
